@@ -1,0 +1,41 @@
+name: Update Blocklist
+on:
+  schedule:
+    - cron:  '0 0 * * *'   # Runs every day at 00:00 UTC
+  workflow_dispatch:       # Allow manual trigger from the Actions tab
+permissions:
+  contents: write          # Grant write access so the action can push changes
+jobs:
+  update-list:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run blocklist update script
+        run: python update_blocklist.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Only commit if combined_blocklist.txt has changes
+          if ! git diff --quiet combined_blocklist.txt; then
+            git add -f combined_blocklist.txt
+            git commit -m "Update blocklist (automated)"
+            git push
+          else
+            echo "No changes to commit"
+          fi
+      - name: Debug combined blocklist
+        run: |
+         ls -lah combined_blocklist.txt
+         head -n 5 combined_blocklist.txt
