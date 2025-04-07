@@ -30,6 +30,7 @@ jobs:
           # Only commit if combined_blocklist.txt has changes
           if ! git diff --quiet combined_blocklist.txt; then
             git add -f combined_blocklist.txt
+            git add -f duplicate_addresses.txt
             git commit -m "Update blocklist (automated)"
             git push
           else
