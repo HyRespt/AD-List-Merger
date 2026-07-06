@@ -74,6 +74,11 @@ def add_domain(candidate):
 def process_line(line):
     """Process a single line from any list."""
     global lines_processed
+    
+    # Dumb Fix
+    if isinstance(line, bytes):
+        line = line.decode('utf-8', errors='ignore')
+        
     line = line.strip()
     lines_processed += 1
     
