@@ -27,11 +27,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # Only commit if combined_blocklist.txt has changes
-          if ! git diff --quiet combined_blocklist.txt; then
-            git add -f combined_blocklist.txt
-            git add -f duplicate_addresses.txt
-            git commit -m "Update blocklist (automated)"
+          git add combined_blocklist.txt.gz
+          git add duplicate_addresses.txt
+          
+          if ! git diff --staged --quiet; then
+            git commit -m "Update blocklist"
             git push
           else
             echo "No changes to commit"
