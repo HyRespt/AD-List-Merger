@@ -13,7 +13,7 @@ except Exception as e:
     SOURCE_URLS = []
 
 OUTPUT_FILE = "combined_blocklist.txt.gz"
-DUPLICATE_FILE = "duplicate_addresses.txt"
+DUPLICATE_FILE = "duplicate_addresses.txt.gz"
 
 domains = set()
 domain_occurrences = Counter()
@@ -75,7 +75,6 @@ def process_line(line):
     """Process a single line from any list."""
     global lines_processed
     
-    # Dumb Fix
     if isinstance(line, bytes):
         line = line.decode('utf-8', errors='ignore')
         
@@ -175,7 +174,7 @@ header_lines = [
 ]
 header = "\n".join(header_lines) + "\n\n"
 
-# GZIP
+# GZIP for the main blocklist
 with gzip.open(OUTPUT_FILE, "wt", encoding="utf-8") as outfile:
     outfile.write(header)
     for domain in sorted(domains):
@@ -187,14 +186,14 @@ print(f" Total lines processed: {lines_processed}")
 print(f" Valid domains added: {valid_domains_added}")
 print(f" Total duplicates encountered while processing: {duplicates_during_processing}")
 
-# Create duplicate addresses
+# GZIP for the duplicate addresses
 duplicate_domains = {domain: count for domain, count in domain_occurrences.items() if count > 1}
 if duplicate_domains:
-    with open(DUPLICATE_FILE, "w") as dup_file:
+    with gzip.open(DUPLICATE_FILE, "wt", encoding="utf-8") as dup_file:
         dup_file.write("Duplicate addresses found in the input:\n\n")
         for domain, count in sorted(duplicate_domains.items()):
             dup_file.write(f"{domain} - {count} occurrences\n")
-    print(f"\nDuplicate addresses list saved to {DUPLICATE_FILE}")
+    print(f"\nDuplicate addresses list compressed and saved to {DUPLICATE_FILE}")
 else:
     print("\nNo duplicate addresses found in the input.")
 
