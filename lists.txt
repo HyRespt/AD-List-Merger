@@ -58,7 +58,7 @@ https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/
 https://pgl.yoyo.org/adservers/serverlist.php?hostformat=nohtml&showintro=0&mimetype=plaintext
 https://raw.githubusercontent.com/symbuzzer/Turkish-Ad-Hosts/main/dns
 https://big.oisd.nl/
-https://raw.githubusercontent.com/badmojr/1Hosts/master/Pro/adblock.txt
+https://raw.githubusercontent.com/badmojr/1Hosts/refs/heads/master/Xtra/domains.txt
 https://raw.githubusercontent.com/blocklistproject/Lists/master/malware.txt
 https://raw.githubusercontent.com/blocklistproject/Lists/master/phishing.txt
 https://raw.githubusercontent.com/blocklistproject/Lists/master/scam.txt
