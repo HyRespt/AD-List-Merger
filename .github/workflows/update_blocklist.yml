@@ -65,7 +65,7 @@ jobs:
               size = chunk.stat().st_size
               assert size <= limit, f"{chunk} exceeds 40 MB: {size} bytes"
               text = chunk.read_text(encoding="utf-8")
-              assert text.count("! ______ ____ __") == 1, f"Bad ASCII header in {chunk}"
+              assert text.count("! ______      ____       __") == 1, f"Bad ASCII header in {chunk}"
               assert f"! Info: chunk{index}" in text, f"Missing chunk info in {chunk}"
               gzip_path = chunk.with_suffix(chunk.suffix + ".gz")
               assert gzip_path.is_file(), f"Missing {gzip_path}"
