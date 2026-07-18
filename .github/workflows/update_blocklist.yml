@@ -79,7 +79,7 @@ jobs:
 
           with gzip.open("combined_blocklist.txt.gz", "rt", encoding="utf-8") as compressed:
               combined = compressed.read()
-          assert combined.count("! ______ ____ __") == 1
+          assert combined.count("! ______      ____       __") == 1
           assert "! Info: combined_blocklist.txt.gz" in combined
           assert "! Info: chunk" not in combined
 
