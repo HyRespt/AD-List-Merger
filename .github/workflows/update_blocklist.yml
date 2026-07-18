@@ -1,7 +1,7 @@
 name: Update Blocklist
 on:
-  schedule:
-    - cron:  '0 0 * * *'   # Runs every day at 00:00 UTC
+  #schedule:
+    #- cron:  '0 0 * * *'   # Runs every day at 00:00 UTC
   workflow_dispatch:       # Allow manual trigger from the Actions tab
 permissions:
   contents: write          # Grant write access so the action can push changes
