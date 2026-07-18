@@ -1,42 +1,122 @@
 name: Update Blocklist
+
+# Run every day or start the update manually.
 on:
   schedule:
-    - cron:  '0 0 * * *'   # Runs every day at 00:00 UTC
-  workflow_dispatch:       # Allow manual trigger from the Actions tab
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
 permissions:
-  contents: write          # Grant write access so the action can push changes
+  # Allow the bot to commit regenerated blocklists.
+  contents: write
+
+# Prevent two updates from writing at the same time.
+concurrency:
+  group: update-blocklist-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   update-list:
     runs-on: ubuntu-latest
+    timeout-minutes: 90
+
     steps:
-      - name: Check out repo
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      # Download the repository with its commit history.
+      - name: Check out repository
+        uses: actions/checkout@v4
         with:
-          python-version: '3.x'
+          fetch-depth: 0
 
+      # Use the same Python version for tests and generation.
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      # Install requests and any future pinned dependencies.
       - name: Install dependencies
-        run: pip install requests
+        run: python -m pip install --upgrade pip -r requirements.txt
 
-      - name: Run blocklist update script
+      # Stop the workflow before publishing broken outputs.
+      - name: Run tests
+        run: python -m unittest discover -s tests -v
+
+      # Merge sources and create gzip files plus 40 MB chunks.
+      - name: Build blocklists
+        env:
+          CHUNK_SIZE_MB: "40"
         run: python update_blocklist.py
 
-      - name: Commit and push changes
+      # Check chunk sizes, headers, gzip copies, and forbidden files.
+      - name: Verify generated files
+        run: |
+          python - <<'PY'
+          import gzip
+          import json
+          from pathlib import Path
+
+          limit = 40_000_000
+          manifest = json.loads(Path("manifest.json").read_text(encoding="utf-8"))
+          chunks = sorted(Path("chunks").glob("combined_blocklist_part_*.txt"))
+          assert chunks, "No chunk files were generated"
+
+          for index, chunk in enumerate(chunks, start=1):
+              size = chunk.stat().st_size
+              assert size <= limit, f"{chunk} exceeds 40 MB: {size} bytes"
+              text = chunk.read_text(encoding="utf-8")
+              assert text.count("! ______ ____ __") == 1, f"Bad ASCII header in {chunk}"
+              assert f"! Info: chunk{index}" in text, f"Missing chunk info in {chunk}"
+              gzip_path = chunk.with_suffix(chunk.suffix + ".gz")
+              assert gzip_path.is_file(), f"Missing {gzip_path}"
+              with gzip.open(gzip_path, "rt", encoding="utf-8") as compressed:
+                  assert compressed.read() == text, f"{gzip_path} does not match {chunk}"
+
+          assert not Path("combined_blocklist.txt").exists()
+          assert not Path("duplicate_blocklist.txt").exists()
+          assert not Path("duplicate_addresses.txt").exists()
+          assert not Path("duplicate_addresses.txt.gz").exists()
+
+          with gzip.open("combined_blocklist.txt.gz", "rt", encoding="utf-8") as compressed:
+              combined = compressed.read()
+          assert combined.count("! ______ ____ __") == 1
+          assert "! Info: combined_blocklist.txt.gz" in combined
+          assert "! Info: chunk" not in combined
+
+          with gzip.open("duplicate_blocklist.txt.gz", "rt", encoding="utf-8") as compressed:
+              assert compressed.readline().strip() == "Duplicate addresses found in the input:"
+
+          print(f"Verified {len(chunks)} chunks and {manifest['domain_count']} domains")
+          PY
+
+      # Keep a short-lived downloadable copy in the Actions run.
+      - name: Upload generated blocklists as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ad-list-merger-${{ github.run_number }}
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 6
+          path: |
+            combined_blocklist.txt.gz
+            duplicate_blocklist.txt.gz
+            manifest.json
+            chunks/*.txt
+            chunks/*.txt.gz
+
+      # Commit only when generated files actually changed.
+      - name: Commit and push generated files
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add combined_blocklist.txt.gz
-          git add duplicate_addresses.txt.gz
-          
-          if ! git diff --staged --quiet; then
-            git commit -m "Update blocklist"
-            git push
-          else
-            echo "No changes to commit"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # -A also stages removal of legacy plaintext files and stale chunks.
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "No generated file changes to commit"
+            exit 0
           fi
-      - name: Debug combined blocklist
-        run: |
-         ls -lah combined_blocklist.txt
-         head -n 5 combined_blocklist.txt
+
+          git commit -m "Update blocklist outputs"
+          git push
