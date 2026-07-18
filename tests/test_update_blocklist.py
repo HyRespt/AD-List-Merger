@@ -79,7 +79,7 @@ class ChunkWriterTests(unittest.TestCase):
         generated_at = dt.datetime(2026, 7, 18, tzinfo=dt.timezone.utc)
         header = build_header(generated_at, info="chunk2").decode("utf-8")
 
-        self.assertTrue(header.startswith("! ______ ____ __\n"))
+        self.assertTrue(header.startswith("! ______      ____       __\n"))
         self.assertEqual(header.count("! AD-List-Merger"), 1)
         self.assertIn("! Github page: https://github.com/HyRespt/AD-List-Merger/", header)
         self.assertIn("! Info: chunk2", header)
@@ -111,7 +111,7 @@ class ChunkWriterTests(unittest.TestCase):
             for index, chunk_path in enumerate(chunk_paths, start=1):
                 self.assertLessEqual(chunk_path.stat().st_size, 700)
                 text = chunk_path.read_text(encoding="utf-8")
-                self.assertEqual(text.count("! ______ ____ __"), 1)
+                self.assertEqual(text.count("! ______      ____       __"), 1)
                 self.assertIn(f"! Info: chunk{index}", text)
                 recovered.extend(
                     line for line in text.splitlines() if line and not line.startswith("!")
@@ -166,7 +166,7 @@ class OutputWriterTests(unittest.TestCase):
             self.assertTrue(combined_gzip.is_file())
             with gzip.open(combined_gzip, "rt", encoding="utf-8") as compressed:
                 combined_text = compressed.read()
-            self.assertEqual(combined_text.count("! ______ ____ __"), 1)
+            self.assertEqual(combined_text.count("! ______      ____       __"), 1)
             self.assertIn("! Info: combined_blocklist.txt.gz", combined_text)
             self.assertNotIn("! Info: chunk", combined_text)
             self.assertIn("ads.example.com\n", combined_text)
