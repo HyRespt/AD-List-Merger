@@ -19,6 +19,9 @@ jobs:
   update-list:
     runs-on: ubuntu-latest
     timeout-minutes: 90
+    
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
 
     steps:
       # Download the repository with its commit history.
@@ -110,8 +113,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          # -A also stages removal of legacy plaintext files and stale chunks.
-          git add -A
+          # Stage generated files and stale chunk deletions only.
+          git add -A -- chunks/
+          git add -- \
+            combined_blocklist.txt.gz \
+            duplicate_blocklist.txt.gz \
+            manifest.json
 
           if git diff --cached --quiet; then
             echo "No generated file changes to commit"
