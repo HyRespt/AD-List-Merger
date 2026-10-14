@@ -1,84 +1,84 @@
 {
   "application": "AD-List-Merger",
   "chunk_size_bytes": 40000000,
-  "domain_count": 6566223,
-  "duplicate_domain_count": 2105840,
+  "domain_count": 6574371,
+  "duplicate_domain_count": 2108595,
   "files": [
     {
-      "bytes": 38761572,
+      "bytes": 38838557,
       "path": "combined_blocklist.txt.gz",
-      "sha256": "af8a69e2d861429238c4a3f996f11b1a18ef11aa3f211a3352da21eb13a6a0b9"
+      "sha256": "ff9bf5b1aebc03b807846eb612ebc3c14870263ef608c44aba323b62e958d272"
     },
     {
-      "bytes": 15452849,
+      "bytes": 15485813,
       "path": "duplicate_blocklist.txt.gz",
-      "sha256": "abcc293017e35266fac9d7f80cb59586fd61c7c49a89b3af910974ceeda30a22"
+      "sha256": "12dea71c7f8b078fc2a62e475dc54b73155217954e6954fd907827f2d7a0ab1e"
     },
     {
-      "bytes": 39999992,
+      "bytes": 39999972,
       "path": "chunks/combined_blocklist_part_001.txt",
-      "sha256": "0bbadae055f1d2137d6fb7da2a1bd6cea271ed9e03d73bb1fdd158daaeb38af4"
+      "sha256": "0d9a1b9025cb7b300836512ad989c8a4f38e3dcf56ead4f2369c6611c2b50e54"
     },
     {
-      "bytes": 39999985,
+      "bytes": 39999991,
       "path": "chunks/combined_blocklist_part_002.txt",
-      "sha256": "093da08ed3749c8a8bdea38068e04672e56c95e8e53632780cb25c7153a5e460"
+      "sha256": "77f2bb8e955fc59bdb48a2c12b0b17be6207ee8b32e6dce6189c63d0a8471445"
     },
     {
-      "bytes": 39999987,
+      "bytes": 39999996,
       "path": "chunks/combined_blocklist_part_003.txt",
-      "sha256": "14c7dc71ff3476e9cedb84f875ce16cc4747008eb292fad51d935b6cef8cd6bc"
+      "sha256": "0eeb029f59100c1754ce504a9a4687993dc98bb3c77659df6f6efec67dcdcbe3"
     },
     {
-      "bytes": 6239246,
+      "bytes": 6446152,
       "path": "chunks/combined_blocklist_part_004.txt",
-      "sha256": "1e732014b50997837b450e0070d66a3392c12bba6c4e7cacb1786b45888ed8b5"
+      "sha256": "92bb280f42e625a285af603f1b1b2002433edf9f2add6a19d625bc0e79075eeb"
     },
     {
-      "bytes": 12163199,
+      "bytes": 12166465,
       "path": "chunks/combined_blocklist_part_001.txt.gz",
-      "sha256": "06abf5020d20b9ec8844a618eec78ac48cba9da56ab8d97f0eed8a380f23487e"
+      "sha256": "64e1d56c66a24294db651ef66ec9e57ae2694ea7030b64202e37205d842b038a"
     },
     {
-      "bytes": 12510903,
+      "bytes": 12516554,
       "path": "chunks/combined_blocklist_part_002.txt.gz",
-      "sha256": "423a176a035a3b60ac3252a0fc6ad0ff9291d53f2081e85e065e0de11264dd8f"
+      "sha256": "856d3e7c6e99998fc5e3cb0557d98746b0f9224020f8e71f5fc4880a330c91fc"
     },
     {
-      "bytes": 12006316,
+      "bytes": 12020608,
       "path": "chunks/combined_blocklist_part_003.txt.gz",
-      "sha256": "d85e2ef60dc84f80147828cd1532d0b12a781e80dea367d2d045eac84267058e"
+      "sha256": "8ea08923b7904e33ba88c5ae8fff30e298dae05446f9e3d293af4ed10b6df8d8"
     },
     {
-      "bytes": 2084286,
+      "bytes": 2137685,
       "path": "chunks/combined_blocklist_part_004.txt.gz",
-      "sha256": "c7a264af7843481872d4deb86966b4dec22bca1581d373b4874eb7c9ae3cc5b8"
+      "sha256": "076886c19e4b003326c3f8979422fe997833ac7f336f9ed94e930393a3f13597"
     }
   ],
-  "generated_at": "2026-10-13T06:17:03Z",
+  "generated_at": "2026-10-14T04:24:37Z",
   "processing": {
-    "duplicate_occurrences": 4503550,
-    "lines_processed": 11229905,
+    "duplicate_occurrences": 4557194,
+    "lines_processed": 11292644,
     "skip_reasons": {
-      "comment_or_header": 102618,
+      "comment_or_header": 103257,
       "cosmetic_rule": 468,
-      "empty_line": 53157,
+      "empty_line": 53466,
       "exception_rule": 360,
       "hosts_line_without_domain": 7,
-      "invalid_domain": 3426,
-      "line_without_valid_domain": 3425,
+      "invalid_domain": 3425,
+      "line_without_valid_domain": 3424,
       "regex_rule": 96,
       "unsupported_line": 1
     },
-    "valid_domains_added": 6566223
+    "valid_domains_added": 6574371
   },
   "sources": {
     "configured": 88,
     "failed": 0,
     "results": [
       {
-        "lines": 184357,
-        "new_domains": 183544,
+        "lines": 184296,
+        "new_domains": 183483,
         "status": "ok",
         "url": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt"
       },
@@ -90,7 +90,7 @@
       },
       {
         "lines": 102250,
-        "new_domains": 58027,
+        "new_domains": 58034,
         "status": "ok",
         "url": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_24.txt"
       },
@@ -101,8 +101,8 @@
         "url": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_4.txt"
       },
       {
-        "lines": 229956,
-        "new_domains": 130778,
+        "lines": 231537,
+        "new_domains": 132009,
         "status": "ok",
         "url": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_49.txt"
       },
@@ -114,19 +114,19 @@
       },
       {
         "lines": 72535,
-        "new_domains": 44160,
+        "new_domains": 44217,
         "status": "ok",
         "url": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_33.txt"
       },
       {
-        "lines": 2616,
-        "new_domains": 2228,
+        "lines": 2508,
+        "new_domains": 2115,
         "status": "ok",
         "url": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_11.txt"
       },
       {
-        "lines": 3088,
-        "new_domains": 224,
+        "lines": 3090,
+        "new_domains": 232,
         "status": "ok",
         "url": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_50.txt"
       },
@@ -144,19 +144,19 @@
       },
       {
         "lines": 46322,
-        "new_domains": 32851,
+        "new_domains": 32855,
         "status": "ok",
         "url": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_42.txt"
       },
       {
-        "lines": 946,
-        "new_domains": 580,
+        "lines": 949,
+        "new_domains": 584,
         "status": "ok",
         "url": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_10.txt"
       },
       {
-        "lines": 141089,
-        "new_domains": 126687,
+        "lines": 159576,
+        "new_domains": 143808,
         "status": "ok",
         "url": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_18.txt"
       },
@@ -167,8 +167,8 @@
         "url": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_8.txt"
       },
       {
-        "lines": 1907245,
-        "new_domains": 1729042,
+        "lines": 1906022,
+        "new_domains": 1727573,
         "status": "ok",
         "url": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_44.txt"
       },
@@ -179,8 +179,8 @@
         "url": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_54.txt"
       },
       {
-        "lines": 1242,
-        "new_domains": 230,
+        "lines": 1244,
+        "new_domains": 231,
         "status": "ok",
         "url": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_55.txt"
       },
@@ -191,8 +191,8 @@
         "url": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_12.txt"
       },
       {
-        "lines": 33109,
-        "new_domains": 14914,
+        "lines": 32599,
+        "new_domains": 3734,
         "status": "ok",
         "url": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_30.txt"
       },
@@ -209,8 +209,8 @@
         "url": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_26.txt"
       },
       {
-        "lines": 101263,
-        "new_domains": 18013,
+        "lines": 101981,
+        "new_domains": 18106,
         "status": "ok",
         "url": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_21.txt"
       },
@@ -251,8 +251,8 @@
         "url": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_61.txt"
       },
       {
-        "lines": 583608,
-        "new_domains": 579206,
+        "lines": 583458,
+        "new_domains": 578962,
         "status": "ok",
         "url": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_47.txt"
       },
@@ -270,7 +270,7 @@
       },
       {
         "lines": 419989,
-        "new_domains": 336871,
+        "new_domains": 336875,
         "status": "ok",
         "url": "https://adguardteam.github.io/HostlistsRegistry/assets/filter_32.txt"
       },
@@ -294,19 +294,19 @@
       },
       {
         "lines": 61537,
-        "new_domains": 2900,
+        "new_domains": 2825,
         "status": "ok",
         "url": "https://gitlab.com/andryou/block/raw/master/kouhai-strict-adblockplus"
       },
       {
-        "lines": 101266,
+        "lines": 101984,
         "new_domains": 3,
         "status": "ok",
         "url": "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-adguard.txt"
       },
       {
         "lines": 182451,
-        "new_domains": 145173,
+        "new_domains": 145171,
         "status": "ok",
         "url": "https://raw.githubusercontent.com/AdroitAdorKhan/antipopads-re/master/formats/filter.txt"
       },
@@ -330,7 +330,7 @@
       },
       {
         "lines": 215315,
-        "new_domains": 10819,
+        "new_domains": 10825,
         "status": "ok",
         "url": "https://raw.githubusercontent.com/bongochong/CombinedPrivacyBlockLists/master/cpbl-abp-list.txt"
       },
@@ -353,14 +353,14 @@
         "url": "https://s3.amazonaws.com/lists.disconnect.me/simple_malvertising.txt"
       },
       {
-        "lines": 1369,
-        "new_domains": 1294,
+        "lines": 1371,
+        "new_domains": 1297,
         "status": "ok",
         "url": "https://raw.githubusercontent.com/dibdot/DoH-IP-blocklists/master/doh-domains.txt"
       },
       {
-        "lines": 463861,
-        "new_domains": 53623,
+        "lines": 483562,
+        "new_domains": 54326,
         "status": "ok",
         "url": "https://hblock.molinero.dev/hosts_adblock.txt"
       },
@@ -372,25 +372,25 @@
       },
       {
         "lines": 300,
-        "new_domains": 143,
+        "new_domains": 3,
         "status": "ok",
         "url": "https://openphish.com/feed.txt"
       },
       {
-        "lines": 141094,
-        "new_domains": 0,
+        "lines": 159581,
+        "new_domains": 778,
         "status": "ok",
         "url": "https://phishing.army/download/phishing_army_blocklist_extended.txt"
       },
       {
-        "lines": 76456,
-        "new_domains": 38769,
+        "lines": 76606,
+        "new_domains": 38926,
         "status": "ok",
         "url": "https://www.stopforumspam.com/downloads/toxic_domains_whole.txt"
       },
       {
-        "lines": 76372,
-        "new_domains": 1,
+        "lines": 76521,
+        "new_domains": 0,
         "status": "ok",
         "url": "https://www.stopforumspam.com/downloads/toxic_domains_whole_filtered_250000.txt"
       },
@@ -431,20 +431,20 @@
         "url": "https://raw.githubusercontent.com/symbuzzer/Turkish-Ad-Hosts/main/dns"
       },
       {
-        "lines": 237833,
-        "new_domains": 19282,
+        "lines": 237791,
+        "new_domains": 18425,
         "status": "ok",
         "url": "https://big.oisd.nl/"
       },
       {
         "lines": 2656406,
-        "new_domains": 1821332,
+        "new_domains": 1823385,
         "status": "ok",
         "url": "https://raw.githubusercontent.com/blocklistproject/Lists/master/malware.txt"
       },
       {
         "lines": 190228,
-        "new_domains": 179747,
+        "new_domains": 179753,
         "status": "ok",
         "url": "https://raw.githubusercontent.com/blocklistproject/Lists/master/phishing.txt"
       },
@@ -456,13 +456,13 @@
       },
       {
         "lines": 285204,
-        "new_domains": 233775,
+        "new_domains": 233715,
         "status": "ok",
         "url": "https://raw.githubusercontent.com/blocklistproject/Lists/master/fraud.txt"
       },
       {
-        "lines": 433,
-        "new_domains": 2,
+        "lines": 431,
+        "new_domains": 1,
         "status": "ok",
         "url": "https://urlhaus.abuse.ch/downloads/hostfile/"
       },
@@ -474,7 +474,7 @@
       },
       {
         "lines": 234038,
-        "new_domains": 78300,
+        "new_domains": 78288,
         "status": "ok",
         "url": "https://blocklistproject.github.io/Lists/adguard/ads-ags.txt"
       },
@@ -486,13 +486,13 @@
       },
       {
         "lines": 108698,
-        "new_domains": 106953,
+        "new_domains": 106954,
         "status": "ok",
         "url": "https://blocklistproject.github.io/Lists/redirect.txt"
       },
       {
         "lines": 143889,
-        "new_domains": 66643,
+        "new_domains": 66474,
         "status": "ok",
         "url": "https://blocklistproject.github.io/Lists/tracking.txt"
       },
@@ -503,13 +503,13 @@
         "url": "https://adaway.org/hosts.txt"
       },
       {
-        "lines": 178731,
-        "new_domains": 34,
+        "lines": 181408,
+        "new_domains": 43,
         "status": "ok",
         "url": "https://v.firebog.net/hosts/AdguardDNS.txt"
       },
       {
-        "lines": 46771,
+        "lines": 47610,
         "new_domains": 1,
         "status": "ok",
         "url": "https://v.firebog.net/hosts/Easylist.txt"
@@ -521,7 +521,7 @@
         "url": "https://raw.githubusercontent.com/FadeMind/hosts.extras/master/UncheckyAds/hosts"
       },
       {
-        "lines": 1640,
+        "lines": 1660,
         "new_domains": 0,
         "status": "ok",
         "url": "https://v.firebog.net/hosts/Admiral.txt"
@@ -533,7 +533,7 @@
         "url": "https://hostfiles.frogeye.fr/firstparty-trackers-hosts.txt"
       },
       {
-        "lines": 43193,
+        "lines": 43206,
         "new_domains": 1,
         "status": "ok",
         "url": "https://v.firebog.net/hosts/Easyprivacy.txt"
@@ -582,7 +582,7 @@
       },
       {
         "lines": 624092,
-        "new_domains": 388701,
+        "new_domains": 388713,
         "status": "ok",
         "url": "https://v.firebog.net/hosts/RPiList-Malware.txt"
       },
@@ -599,8 +599,8 @@
         "url": "https://raw.githubusercontent.com/AssoEchap/stalkerware-indicators/master/generated/hosts"
       },
       {
-        "lines": 239708,
-        "new_domains": 74396,
+        "lines": 240994,
+        "new_domains": 74670,
         "status": "ok",
         "url": "https://lists.cyberhost.uk/malware.txt"
       }
